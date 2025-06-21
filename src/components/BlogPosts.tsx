@@ -1,0 +1,131 @@
+import React from "react";
+import { Blog1, Blog2, Blog3, Blog4, Blog5, Blog6 } from "../assets";
+
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/effect-flip";
+
+const posts = [
+  {
+    id: 1,
+    title: "Como ter um tanquinho",
+    subTitle: "Indoor | Outdoor | Academia",
+    image: Blog1,
+  },
+  {
+    id: 2,
+    title: "Como ter um tanquinho",
+    subTitle: "Indoor | Outdoor | Academia",
+    image: Blog2,
+  },
+  {
+    id: 3,
+    title: "Como ter um tanquinho",
+    subTitle: "Indoor | Outdoor | Academia",
+    image: Blog3,
+  },
+  {
+    id: 4,
+    title: "Como ter um tanquinho",
+    subTitle: "Indoor | Outdoor | Academia",
+    image: Blog4,
+  },
+  {
+    id: 5,
+    title: "Como ter um tanquinho",
+    subTitle: "Indoor | Outdoor | Academia",
+    image: Blog5,
+  },
+  {
+    id: 6,
+    title: "Como ter um tanquinho",
+    subTitle: "Indoor | Outdoor | Academia",
+    image: Blog6,
+  },
+  {
+    id: 7,
+    title: "Como ter um tanquinho",
+    subTitle: "Indoor | Outdoor | Academia",
+    image: Blog4,
+  },
+];
+
+
+const CreatePost = ({ title, subTitle, image }: any) => {
+  return (
+    <div className="flex flex-col justify-center items-center mb-[10vh]">
+      <div className="w-full h-60 md:h-80 relative">
+        <img
+          src={image}
+          alt="image"
+          className="absolute inset-0 z-0 object-fill w-full h-full hover:brightness-50 duration-300"
+        />
+        <div className="flex flex-col opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 justify-center items-center text-6xl text-white font-semibold bg-black bg-opacity-50">
+          <h1 className="font-poppins text-xl font-bold text-white">{title}</h1>
+          <h2 className="font-poppins text-sm text-white">{subTitle}</h2>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const BlogPosts = () => {
+  return (
+    <div>
+      <div className="pt-[10vh]">
+        <h1 className="text-center font-poppins text-2xl sm:text-5xl md:text-7xl font-bold">
+          NOSSOS BLOGS
+        </h1>
+        <h2 className="text-center font-poppins text-md sm:text-lg md:text-2xl">
+          Veja nossos últimos posts e artigos
+        </h2>
+      </div>
+      <div className="pt-[5vh]">
+        <Swiper
+          modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
+          loop={true}
+          spaceBetween={10}
+          slidesPerView={1}
+          breakpoints={{
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1060: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+          }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={false}
+        >
+          {posts.map((post) => (
+            <SwiperSlide key={post.id}>
+              <CreatePost
+                title={post.title}
+                subTitle={post.subTitle}
+                image={post.image}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  );
+};
+
+export default BlogPosts;
